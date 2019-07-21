@@ -1,7 +1,7 @@
 var titleInput = document.querySelector('.title__input');
 var bodyInput = document.querySelector('.body__input');
 var saveButton = document.querySelector('.top__input--btn');
-var bottomSection = document.querySelector('.main__bottom');
+var bottomSection = document.querySelector('.main__bottom')
 
 var ideas = [];
 
@@ -44,7 +44,7 @@ function checkLocalStorage() {
   ideas = JSON.parse(localStorage.getItem("ideasKey")).map( function(element) {
     return new Idea(element) 
   });
-}
+};
 };
 
 function findId(event) {
@@ -72,8 +72,17 @@ function deleteCard(event) {
 function appendCards() {
   for (var i = 0; i < ideas.length ; i++) {
     makeCard(ideas[i]);
-    };
   };
+};
+
+function handlePrompt() {
+  var prompt = document.querySelector(".prompt__new-idea")
+  if (ideas.length === 0) {
+    prompt.hidden = false;
+  } else {
+  prompt.hidden = true;
+  };
+};
 
 function getIndex(event) {
   return ideas.findIndex( function(idea) {
@@ -96,6 +105,7 @@ function starIdea(event) {
 function eventHandling() {
   if (event.target.classList[1] === "card__img--close") {
     deleteCard(event);
+    handlePrompt();
   }; 
 
   if (event.target.classList === "card__ideas") {
@@ -103,18 +113,8 @@ function eventHandling() {
   }; 
 };
 
-// function updateTitle(event) {
-//   console.log("TITLEEEEEE")
-//   var cardToUpdate = event.target.closest('.card')
-//   var contentTitle = document.querySelector(".card__ideas");
-//   var updatedTitle = contentTitle.innerText;
-//   var index = getIndex(event)
-//   console.log(index)
-// };
-
-
 function makeCard(idea) {
-bottomSection.insertAdjacentHTML("afterbegin", `<article class="card" id=${idea.id}>
+  bottomSection.insertAdjacentHTML("afterbegin", `<article class="card" id=${idea.id}>
 						<section class="card__header">
               <img src =${idea.starred ? "images/star-active.svg" : "images/star.svg"} class="card__img card__img--star" id="card__img--star" onclick="starIdea(event)">
 							<img src="images/delete.svg"  class="card__img card__img--close" onclick="deleteCard(event)">
@@ -130,5 +130,6 @@ bottomSection.insertAdjacentHTML("afterbegin", `<article class="card" id=${idea.
 							<img src="images/downvote.svg"
 							class="card__img card__img--downvote" arrow down>
 						</section>
-					</article>`)
+          </article>`)
+  handlePrompt();
 };
