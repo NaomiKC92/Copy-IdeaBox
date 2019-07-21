@@ -1,7 +1,8 @@
 var titleInput = document.querySelector('.title__input');
 var bodyInput = document.querySelector('.body__input');
 var saveButton = document.querySelector('.top__input--btn');
-var bottomSection = document.querySelector('.main__bottom')
+var bottomSection = document.querySelector('.main__bottom');
+var searchBar = document.querySelector('.form__search--input');
 
 var ideas = [];
 
@@ -11,8 +12,13 @@ appendCards();
 titleInput.addEventListener('keyup', enableSave);
 bodyInput.addEventListener('keyup', enableSave);
 saveButton.addEventListener("click", createIdea);
+bottomSection.addEventListener("click", deleteCard);
+bottomSection.addEventListener("focusout", updateTitle);
+bottomSection.addEventListener("focusout", updateBody);
+searchBar.addEventListener("keyup", searchCardContent);
+searchBar.addEventListener("keyup", restoreSearchCards);
 
-bottomSection.addEventListener("click", eventHandling);
+
 
 function enableSave() {
     if (titleInput.value === '' || bodyInput.value === ''){
@@ -108,11 +114,49 @@ function eventHandling() {
     handlePrompt();
   }; 
 
-  if (event.target.classList === "card__ideas") {
-    updateTitle(event);
-  }; 
+
+function updateTitle(event) {
+  if (event.target.classList[0] === "card__ideas") {
+      var index = getIndex(event);
+      var updatedTitle = event.target.innerText;
+      ideas[index].title = updatedTitle;
+      ideas[index].updateIdea(ideas);
+    }
 };
 
+function updateBody(event) {
+  if (event.target.classList[0] === "card__info") {
+    var index = getIndex(event);
+    var updatedBody = event.target.innerText;
+    ideas[index].body = updatedBody;
+    ideas[index].updateIdea(ideas);
+  }
+}
+
+function searchCardContent() {
+  var input = document.querySelector('.form__search--input').value;
+  input = input.toLowerCase();
+  var cardContent = document.querySelectorAll('.card__body');
+  var card = document.querySelectorAll('.card');
+  for (var i = 0; i < cardContent.length; i++) {
+    if (!cardContent[i].innerText.toLowerCase().includes(input)) {
+      card[i].style.display = "none";
+    } else {
+      card[i].style.display = "visible";
+    }
+  }
+}
+
+function restoreSearchCards() {
+  var input = document.querySelector('.form__search--input').value;
+  if (input.length === 0) {
+    checkLocalStorage();
+    appendCards();
+  // } else {
+    // searchCardContent();
+  }
+}
+  
 function makeCard(idea) {
   bottomSection.insertAdjacentHTML("afterbegin", `<article class="card" id=${idea.id}>
 						<section class="card__header">

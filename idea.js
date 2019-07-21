@@ -11,9 +11,10 @@ class Idea {
   	localStorage.setItem("ideasKey", JSON.stringify(ideas));
   }
 
-// updateIdea() {
+updateIdea() {
+  localStorage.setItem("ideasKey", JSON.stringify(ideas));
 //
-// }
+}
 
 // updateQuality() {git 
 //
