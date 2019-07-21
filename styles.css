@@ -195,6 +195,14 @@ width: 100%;
   min-width: 200px;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
 .card__header{
   background-color: #1F1F3D;
   width: 100%;
