@@ -13,13 +13,10 @@ insertPrompt();
 titleInput.addEventListener('keyup', enableSave);
 bodyInput.addEventListener('keyup', enableSave);
 saveButton.addEventListener("click", createIdea);
-bottomSection.addEventListener("click", deleteCard);
 bottomSection.addEventListener("focusout", updateTitle);
 bottomSection.addEventListener("focusout", updateBody);
 searchBar.addEventListener("keyup", searchCardContent);
-searchBar.addEventListener("keyup", restoreSearchCards);
-
-
+bottomSection.addEventListener("keydown", saveOnEnter);
 
 function enableSave() {
     if (titleInput.value === '' || bodyInput.value === ''){
@@ -114,11 +111,13 @@ function starIdea(event) {
   ideas[index].saveToStorage(ideas)
 };
 
-function eventHandling() {
-  if (event.target.classList[1] === "card__img--close") {
-    deleteCard(event);
-  }; 
-};
+// function showStarredIdeas() {
+//   var index = ideas(getIndex(event))
+//   ideas = ideas.filter(function() {
+//     return ideas[]
+//   })
+  
+// };
 
 function updateTitle(event) {
   if (event.target.classList[0] === "card__ideas") {
@@ -138,6 +137,14 @@ function updateBody(event) {
   };
 };
 
+function saveOnEnter(event) {
+  if (event.key === 'Enter') {
+    event.target.blur();
+    updateBody(event);
+    updateTitle(event);
+  };
+ };
+
 function searchCardContent() {
   var input = document.querySelector('.form__search--input').value;
   input = input.toLowerCase();
@@ -156,7 +163,7 @@ function makeCard(idea) {
   bottomSection.insertAdjacentHTML("afterbegin", `<article class="card" id=${idea.id}>
 						<section class="card__header">
               <img src =${idea.starred ? "images/star-active.svg" : "images/star.svg"} class="card__img card__img--star" id="card__img--star" onclick="starIdea(event)">
-							<img src="images/delete.svg"  class="card__img card__img--close" onclick="deleteCard(event)">
+							<img src="images/delete.svg"  class="card__img card__img--close" onclick="deleteCard(event)" onmouseover="this.src='images/delete-active.svg'" onmouseout="this.src='images/delete.svg'">
 						</section>
 						<section class="card__body">
 							<h2 class="card__ideas" contenteditable="true">${idea.title}</h2>

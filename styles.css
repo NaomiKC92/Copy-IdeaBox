@@ -66,20 +66,28 @@ h3 {
   margin-left: 15px;
 }
 
-li {
+.nav__ranks {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav__quality--btns {
   color: #fff;
   font-size: 23px;
   height: 40px;
   list-style: none;
   margin: auto auto 10px -25px;
-}
+  background-color: #1F1F3D;
+  border: none;
+};
 
-li:hover {
+.nav__quality--btns:hover {
   margin: 0 0 10px -40px;
   padding: 5px;
   background-color: #d14119;
   border-left: 9px solid #e58e72;
   cursor: pointer;
+  text-align: left;
 }
 
 .nav__input--label {
@@ -223,6 +231,10 @@ width: 100%;
   height: 4vh;
 }
 
+.card__img:hover {
+  transform: scale(1.2);
+}
+
 .card__img--star {
   float: left;
 }
@@ -245,6 +257,7 @@ width: 100%;
   font-size: 14px;
 
 }
+
 
 .card__footer {
   background-color: #5356A4;
