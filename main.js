@@ -110,9 +110,7 @@ function starIdea(event) {
   var starToChange = event.target;
   var starred = "images/star-active.svg"
   var notStarred = "images/star.svg"
-
-  ideas[index].starred === true ? starToChange.src = starred : starToChange.src = notStarred
-  
+  ideas[index].starred === true ? starToChange.src = starred : starToChange.src = notStarred 
   ideas[index].saveToStorage(ideas)
 };
 
@@ -149,17 +147,8 @@ function searchCardContent() {
     if (!cardContent[i].innerText.toLowerCase().includes(input)) {
       card[i].style.display = "none";
     } else {
-      card[i].style.display = "visible";
+      card[i].style.display = "flex";
     };
-  };
-};
-
-function restoreSearchCards() {
-  var input = document.querySelector('.form__search--input').value;
-  if (input === "") {
-     bottomSection.innerHTML = "";
-     checkLocalStorage();
-     appendCards();
   };
 };
   
