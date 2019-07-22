@@ -1,61 +1,54 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Ideabox Redux</title>
-    <link rel="stylesheet" href="styles.css" type="text/css">
-    <link
-		href=
-		"https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"
-		rel="stylesheet">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-	</head>
-	<body>
-		<nav class="nav">
-			<header class="nav__header">
-				<h1>IdeaBox Redux</h1>
-			</header>
-			<section class="nav__starred">
-				<h3>Filter Starred Ideas</h3>
-				<button class="nav__btn nav__btn--starred">Show Starred Ideas</button>
-			</section>
-			<section class="nav__quality">
-				<h3 class="nav__quality--label">Filter by Quality</h3>
-				<ul class="nav__ranks">
-					<li>Swill</li>
-					<li>Plausible</li>
-					<li>Genius</li>
-				</ul>
-				<form class="nav__form">
-					<label class="nav__input--label">New Quality</label>
-					<input type="text" class="nav__input--quality">
-					<button class="nav__btn nav__btn--quality">Add New Quality</button>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Ideabox Redux</title>
+	<link rel="stylesheet" href="styles.css" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+	<nav class="nav">
+		<header class="nav__header">
+			<h1>IdeaBox Redux</h1>
+		</header>
+		<section class="nav__starred">
+			<h3>Filter Starred Ideas</h3>
+			<button class="nav__btn nav__btn--starred">Show Starred Ideas</button>
+		</section>
+		<section class="nav__quality">
+			<h3 class="nav__quality--label">Filter by Quality</h3>
+			<ul class="nav__ranks">
+				<li>Swill</li>
+				<li>Plausible</li>
+				<li>Genius</li>
+			</ul>
+			<form class="nav__form">
+				<label class="nav__input--label">New Quality</label>
+				<input type="text" class="nav__input--quality">
+				<button class="nav__btn nav__btn--quality">Add New Quality</button>
+			</form>
+		</section>
+	</nav>
+	<main>
+		<section class="main__top">
+			<article class="top__form--container">
+				<form class="title">
+					<label class="title__label">Title</label>
+					<input type="text" class="title__input">
 				</form>
-			</section>
-		</nav>
-		<main>
-			<section class="main__top">
-				<article class="top__form--container">
-					<form class="title">
-						<label class="title__label">Title</label>
-						<input type="text" class="title__input">
-					</form>
-					<form class="body">
-						<label class="body__label">Body</label>
-						<input type="text" class="body__input">
-					</form>
-					<button class="top__input--btn">Save</button>
-					<input type="text" class="form__search--input" id="searchbar" onkeyup="searchByTitle" placeholder= "Enter Search Term Here">
-				</article>
-			</section>
-			<section class="main__bottom">
-				<article class="prompt__new-idea">
-					<p>Got a great idea?! Name it, create it and click save!</p>
-				</article>
-			</section>
-		</main>
-	</body>
-	<script src="idea.js"></script>
-	<script src="main.js"></script>
+				<form class="body">
+					<label class="body__label">Body</label>
+					<input type="text" class="body__input">
+				</form>
+				<button class="top__input--btn">Save</button>
+				<input type="text" class="form__search--input" id="searchbar" placeholder="Enter Search Term Here">
+			</article>
+		</section>
+		<section class="main__bottom"></section>
+	</main>
+</body>
+<script src="idea.js"></script>
+<script src="main.js"></script>
 </html>
