@@ -8,6 +8,7 @@ var ideas = [];
 
 checkLocalStorage();
 appendCards();
+insertPrompt();
 
 titleInput.addEventListener('keyup', enableSave);
 bodyInput.addEventListener('keyup', enableSave);
@@ -72,6 +73,7 @@ function deleteCard(event) {
 		var card = event.target.closest(".card")
     card.remove();
     deleteMatchingIdea(event)
+    insertPrompt();
   };
 };
 
@@ -81,12 +83,18 @@ function appendCards() {
   };
 };
 
-function handlePrompt() {
-  var prompt = document.querySelector(".prompt__new-idea")
-  if (ideas.length === 0) {
-    prompt.hidden = false;
-  } else {
-  prompt.hidden = true;
+function removePrompt() {
+  var prompt = document.querySelector(".prompt__new-idea");
+  if (prompt) {
+    prompt.parentNode.removeChild(prompt)
+  };
+};
+
+function insertPrompt() {
+  if (bottomSection.innerHTML === "" || bottomSection.innerHTML === " ") {
+    bottomSection.insertAdjacentHTML("afterbegin", `<article class="prompt__new-idea">
+    <p>Got a great idea?! Name it, create it and click save!</p>
+  </article>`)
   };
 };
 
@@ -111,9 +119,8 @@ function starIdea(event) {
 function eventHandling() {
   if (event.target.classList[1] === "card__img--close") {
     deleteCard(event);
-    handlePrompt();
   }; 
-
+};
 
 function updateTitle(event) {
   if (event.target.classList[0] === "card__ideas") {
@@ -121,7 +128,7 @@ function updateTitle(event) {
       var updatedTitle = event.target.innerText;
       ideas[index].title = updatedTitle;
       ideas[index].updateIdea(ideas);
-    }
+    };
 };
 
 function updateBody(event) {
@@ -130,8 +137,8 @@ function updateBody(event) {
     var updatedBody = event.target.innerText;
     ideas[index].body = updatedBody;
     ideas[index].updateIdea(ideas);
-  }
-}
+  };
+};
 
 function searchCardContent() {
   var input = document.querySelector('.form__search--input').value;
@@ -143,19 +150,18 @@ function searchCardContent() {
       card[i].style.display = "none";
     } else {
       card[i].style.display = "visible";
-    }
-  }
-}
+    };
+  };
+};
 
 function restoreSearchCards() {
   var input = document.querySelector('.form__search--input').value;
-  if (input.length === 0) {
-    checkLocalStorage();
-    appendCards();
-  // } else {
-    // searchCardContent();
-  }
-}
+  if (input === "") {
+     bottomSection.innerHTML = "";
+     checkLocalStorage();
+     appendCards();
+  };
+};
   
 function makeCard(idea) {
   bottomSection.insertAdjacentHTML("afterbegin", `<article class="card" id=${idea.id}>
@@ -175,5 +181,5 @@ function makeCard(idea) {
 							class="card__img card__img--downvote" arrow down>
 						</section>
           </article>`)
-  handlePrompt();
+  removePrompt();
 };
